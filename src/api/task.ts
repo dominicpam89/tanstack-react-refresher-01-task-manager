@@ -67,4 +67,6 @@ const tasksKeys = {
   detail: (id: number) => [...tasksKeys.details(), id] as const,
 }
 
-export { getTasks, getTask, createTask, updateTask, deleteTask, tasksKeys }
+const tasksApi = { getTasks, getTask, createTask, updateTask, deleteTask }
+
+export { tasksKeys, tasksApi }
