@@ -1,9 +1,9 @@
-import TaskCard from '@/components/TaskCard'
+import TaskForm from '@/components/TaskForm'
 
 export default function TasksPage() {
   return (
     <div>
-      <TaskCard />
+      <TaskForm />
     </div>
   )
 }
