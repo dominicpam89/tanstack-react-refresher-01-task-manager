@@ -59,4 +59,12 @@ const deleteTask = async (id: string) => {
   })
 }
 
-export { getTasks, getTask, createTask, updateTask, deleteTask }
+const tasksKeys = {
+  all: ['tasks'] as const,
+  lists: () => [...tasksKeys.all, 'list'] as const,
+  list: (filters?: Record<string, unknown>) => [...tasksKeys.lists(), filters] as const,
+  details: () => [...tasksKeys.all, 'detail'] as const,
+  detail: (id: number) => [...tasksKeys.details(), id] as const,
+}
+
+export { getTasks, getTask, createTask, updateTask, deleteTask, tasksKeys }
