@@ -39,10 +39,9 @@ const getTask = async (id: string) => {
 }
 
 const createTask = async (taskData: CreateTaskInput) => {
-  const description = taskData.description || 'No description provided'
   return await fetchAPI<Task>('/tasks', {
     method: 'POST',
-    body: JSON.stringify({ ...taskData, description }),
+    body: JSON.stringify(taskData),
   })
 }
 
