@@ -17,6 +17,7 @@ interface TaskFormProps {
   onSubmit: (data: TaskFormValues) => void
   isSubmitting: 'pending' | 'success' | 'error' | 'idle'
   submitLabel?: string
+  onDrawerClose: () => void
 }
 
 export default function TaskForm({
@@ -24,6 +25,7 @@ export default function TaskForm({
   onSubmit,
   isSubmitting,
   submitLabel = 'Create',
+  onDrawerClose,
 }: TaskFormProps) {
   const form = useForm<TaskFormValues>({
     resolver: zodResolver(taskFormSchema),
@@ -36,6 +38,11 @@ export default function TaskForm({
     <TaskCard
       cardTitle="Task Card"
       cardDescription="Fill in the details of the task you want to create"
+      header={
+        <Button variant="destructive" className="px-6 py-4 cursor-pointer" onClick={onDrawerClose}>
+          Cancel
+        </Button>
+      }
       footer={
         <>
           <Button variant="outline" className="px-6 py-4 cursor-pointer" onClick={onReset}>

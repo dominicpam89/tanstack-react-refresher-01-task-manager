@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/card'
 
 interface TaskCardProps {
+  header?: React.ReactNode
   footer?: React.ReactNode
   children: React.ReactNode
   cardTitle?: string
@@ -16,12 +17,14 @@ interface TaskCardProps {
 
 export default function TaskCard({
   children,
+  header = <></>,
   footer = <></>,
   cardTitle,
   cardDescription,
 }: TaskCardProps) {
   return (
     <Card className="p-2 md:p-12 gap-6">
+      {header}
       <CardHeader>
         <CardTitle>{cardTitle || 'Untitled'}</CardTitle>
         <CardDescription>{cardDescription || ''}</CardDescription>
