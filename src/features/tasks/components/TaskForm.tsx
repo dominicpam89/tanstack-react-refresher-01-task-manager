@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { SpinnerCustom } from './ui/spinner-custom'
+import { SpinnerCustom } from '@/components/ui/spinner-custom'
 import {
   taskFormSchema,
   taskFormDefaultValues,
@@ -15,8 +15,8 @@ import {
 } from '@/features/tasks/task-form-schema'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import InputText from '@/components/TaskForm/InputText'
-import InputTextArea from './TaskForm/InputTextArea'
+import InputText from '@/components/input-form/InputText'
+import InputTextArea from '@/components/input-form/InputTextArea'
 import { useCallback } from 'react'
 
 interface TaskFormProps {
