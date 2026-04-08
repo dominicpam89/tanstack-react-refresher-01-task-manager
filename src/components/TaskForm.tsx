@@ -10,7 +10,7 @@ import {
 import { SpinnerCustom } from './ui/spinner-custom'
 import {
   taskFormSchema,
-  taskFormDefaultValues as defaultValues,
+  taskFormDefaultValues,
   type TaskFormValues,
 } from '@/features/tasks/task-form-schema'
 import { Controller, useForm } from 'react-hook-form'
@@ -19,7 +19,19 @@ import InputText from '@/components/TaskForm/InputText'
 import InputTextArea from './TaskForm/InputTextArea'
 import { useCallback } from 'react'
 
-export default function TaskForm() {
+interface TaskFormProps {
+  defaultValues?: Partial<TaskFormValues>
+  onSubmit: (data: TaskFormValues) => void
+  isSubmitting: 'pending' | 'success' | 'error'
+  submitLabel?: string
+}
+
+export default function TaskForm({
+  defaultValues = taskFormDefaultValues,
+  onSubmit,
+  isSubmitting,
+  submitLabel = 'Create',
+}: TaskFormProps) {
   const form = useForm<TaskFormValues>({
     resolver: zodResolver(taskFormSchema),
     defaultValues,
@@ -34,7 +46,11 @@ export default function TaskForm() {
         <CardDescription>Fill in the details to create a new task.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="grid w-full items-center gap-4" id="task-form">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="grid w-full items-center gap-4"
+          id="task-form"
+        >
           <Controller
             control={form.control}
             name="title"
@@ -64,9 +80,13 @@ export default function TaskForm() {
         <Button variant="outline" className="px-6 py-4 cursor-pointer" onClick={onReset}>
           Reset
         </Button>
-        <Button size="lg" className="px-6 py-4 cursor-pointer">
-          <SpinnerCustom />
-          Create Task
+        <Button
+          size="lg"
+          className="px-6 py-4 cursor-pointer"
+          disabled={isSubmitting === 'pending'}
+        >
+          {isSubmitting === 'pending' && <SpinnerCustom />}
+          {submitLabel}
         </Button>
       </CardFooter>
     </Card>
