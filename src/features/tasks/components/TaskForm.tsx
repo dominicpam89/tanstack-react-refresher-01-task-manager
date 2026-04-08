@@ -43,21 +43,6 @@ export default function TaskForm({
           Cancel
         </Button>
       }
-      footer={
-        <>
-          <Button variant="outline" className="px-6 py-4 cursor-pointer" onClick={onReset}>
-            Reset
-          </Button>
-          <Button
-            size="lg"
-            className="px-6 py-4 cursor-pointer"
-            disabled={isSubmitting === 'pending'}
-          >
-            {isSubmitting === 'pending' && <SpinnerCustom />}
-            {submitLabel}
-          </Button>
-        </>
-      }
     >
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -87,6 +72,25 @@ export default function TaskForm({
             />
           )}
         />
+        <div className="w-full flex gap-2 justify-end">
+          <Button
+            variant="outline"
+            className="px-6 py-4 cursor-pointer"
+            type="reset"
+            onClick={onReset}
+          >
+            Reset
+          </Button>
+          <Button
+            size="lg"
+            className="px-6 py-4 cursor-pointer"
+            disabled={isSubmitting === 'pending'}
+            type="submit"
+          >
+            {isSubmitting === 'pending' && <SpinnerCustom />}
+            {submitLabel}
+          </Button>
+        </div>
       </form>
     </TaskCard>
   )

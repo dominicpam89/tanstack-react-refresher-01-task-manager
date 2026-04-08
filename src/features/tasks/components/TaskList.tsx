@@ -4,19 +4,31 @@ import { Button } from '@/components/ui/button'
 import TaskCard from './TaskCard'
 import { useDeleteTask } from '@/features/hooks/useTasks'
 import LoadingUI from '@/components/Loading'
+import AlertUI from '@/components/AlertUI'
 
 interface TaskListProps {
   tasks: Task[]
   isLoading?: boolean
+  isError?: boolean
+  error: Error | null
 }
 
 interface TaskProps {
   task: Task
 }
 
-export default function TaskList({ tasks, isLoading }: TaskListProps) {
+export default function TaskList({ tasks, isLoading, isError, error }: TaskListProps) {
   if (isLoading) {
     return <LoadingUI />
+  }
+  if (isError) {
+    return (
+      <AlertUI
+        title={error?.name || 'Tasks Loaded Failed!'}
+        description="Tasks could not be loaded. Please contact your developer and try again."
+        closable
+      />
+    )
   }
   if (tasks.length === 0) {
     return (
@@ -38,7 +50,7 @@ function Task({ task }: TaskProps) {
   const deleteTask = useDeleteTask()
   return (
     <div className="flex w-full max-w-md flex-col gap-6 my-2">
-      <Item variant="outline">
+      <Item variant={deleteTask.status === 'pending' ? 'muted' : 'outline'}>
         <ItemContent>
           <ItemTitle>{task.title}</ItemTitle>
           <ItemDescription>{task.description || ''}</ItemDescription>
