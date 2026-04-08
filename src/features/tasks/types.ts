@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import type { UpdateTaskInput } from '../types'
 
 export const TaskUpdateSchema = z.object({
   title: z.string().min(1, 'Title cannot be empty').optional(),
@@ -8,3 +7,8 @@ export const TaskUpdateSchema = z.object({
 })
 
 export type TaskUpdateSchema = z.infer<typeof TaskUpdateSchema>
+
+export type TaskContextType = {
+  getTasks: () => void
+  getTask: (id: string) => void
+}
