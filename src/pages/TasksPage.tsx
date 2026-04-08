@@ -7,7 +7,7 @@ export default function TasksPage() {
   }
   return (
     <div>
-      <TaskForm onSubmit={onSubmit} isSubmitting="pending" />
+      <TaskForm onSubmit={onSubmit} isSubmitting="idle" />
     </div>
   )
 }

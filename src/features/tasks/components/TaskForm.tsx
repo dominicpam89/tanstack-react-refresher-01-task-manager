@@ -22,7 +22,7 @@ import { useCallback } from 'react'
 interface TaskFormProps {
   defaultValues?: Partial<TaskFormValues>
   onSubmit: (data: TaskFormValues) => void
-  isSubmitting: 'pending' | 'success' | 'error'
+  isSubmitting: 'pending' | 'success' | 'error' | 'idle'
   submitLabel?: string
 }
 
