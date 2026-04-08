@@ -1,0 +1,40 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Reset Mind",
+      "description": "Doing meditate for 30 minutes under waterfall",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "Morning Run",
+      "description": "Jogging 5km in the park at sunrise",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "title": "Read a Book",
+      "description": "Finishing a chapter of a novel before bed",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "title": "Healthy Meal Prep",
+      "description": "Preparing salads and smoothies for the week",
+      "completed": false
+    },
+    {
+      "id": 5,
+      "title": "Learn Guitar",
+      "description": "Practicing chords for 20 minutes",
+      "completed": false
+    },
+    {
+      "id": 6,
+      "title": "Call Family",
+      "description": "Having a 15-minute conversation with parents",
+      "completed": false
+    }
+  ]
+}
