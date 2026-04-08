@@ -7,8 +7,3 @@ export const TaskUpdateSchema = z.object({
 })
 
 export type TaskUpdateSchema = z.infer<typeof TaskUpdateSchema>
-
-export type TaskContextType = {
-  getTasks: () => void
-  getTask: (id: string) => void
-}

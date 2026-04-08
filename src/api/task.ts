@@ -39,14 +39,14 @@ const getTask = async (id: string) => {
 }
 
 const createTask = async (taskData: CreateTaskInput) => {
-  return await fetchAPI<Task>('/tasks', {
+  return await fetchAPI<void>('/tasks', {
     method: 'POST',
     body: JSON.stringify(taskData),
   })
 }
 
 const updateTask = async (id: string, taskData: UpdateTaskInput) => {
-  return await fetchAPI<Task>('/tasks/' + encodeURIComponent(id), {
+  return await fetchAPI<void>('/tasks/' + encodeURIComponent(id), {
     method: 'PATCH',
     body: JSON.stringify(taskData),
   })
