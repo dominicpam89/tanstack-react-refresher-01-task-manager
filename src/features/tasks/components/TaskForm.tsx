@@ -1,12 +1,4 @@
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
 import { SpinnerCustom } from '@/components/ui/spinner-custom'
 import {
   taskFormSchema,
@@ -18,6 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import InputText from '@/components/input-form/InputText'
 import InputTextArea from '@/components/input-form/InputTextArea'
 import { useCallback } from 'react'
+import TaskCard from './TaskCard'
 
 interface TaskFormProps {
   defaultValues?: Partial<TaskFormValues>
@@ -40,55 +33,54 @@ export default function TaskForm({
   })
   const onReset = useCallback(() => form.reset(), [form])
   return (
-    <Card className="p-2 md:p-12 gap-6">
-      <CardHeader>
-        <CardTitle>Create Task</CardTitle>
-        <CardDescription>Fill in the details to create a new task.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="grid w-full items-center gap-4"
-          id="task-form"
-        >
-          <Controller
-            control={form.control}
-            name="title"
-            render={({ field, fieldState }) => (
-              <InputText<TaskFormValues, 'title'>
-                field={field}
-                fieldState={fieldState}
-                placeholder="Task Title"
-              />
-            )}
-          />
-          <Controller
-            control={form.control}
-            name="description"
-            render={({ field, fieldState }) => (
-              <InputTextArea<TaskFormValues, 'description'>
-                field={field}
-                fieldState={fieldState}
-                id="description"
-                placeholder="Task Description"
-              />
-            )}
-          />
-        </form>
-      </CardContent>
-      <CardFooter className="flex gap-2 justify-end">
-        <Button variant="outline" className="px-6 py-4 cursor-pointer" onClick={onReset}>
-          Reset
-        </Button>
-        <Button
-          size="lg"
-          className="px-6 py-4 cursor-pointer"
-          disabled={isSubmitting === 'pending'}
-        >
-          {isSubmitting === 'pending' && <SpinnerCustom />}
-          {submitLabel}
-        </Button>
-      </CardFooter>
-    </Card>
+    <TaskCard
+      cardTitle="Task Card"
+      cardDescription="Fill in the details of the task you want to create"
+      footer={
+        <>
+          <Button variant="outline" className="px-6 py-4 cursor-pointer" onClick={onReset}>
+            Reset
+          </Button>
+          <Button
+            size="lg"
+            className="px-6 py-4 cursor-pointer"
+            disabled={isSubmitting === 'pending'}
+          >
+            {isSubmitting === 'pending' && <SpinnerCustom />}
+            {submitLabel}
+          </Button>
+        </>
+      }
+    >
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="grid w-full items-center gap-4"
+        id="task-form"
+      >
+        <Controller
+          control={form.control}
+          name="title"
+          render={({ field, fieldState }) => (
+            <InputText<TaskFormValues, 'title'>
+              field={field}
+              fieldState={fieldState}
+              placeholder="Task Title"
+            />
+          )}
+        />
+        <Controller
+          control={form.control}
+          name="description"
+          render={({ field, fieldState }) => (
+            <InputTextArea<TaskFormValues, 'description'>
+              field={field}
+              fieldState={fieldState}
+              id="description"
+              placeholder="Task Description"
+            />
+          )}
+        />
+      </form>
+    </TaskCard>
   )
 }
