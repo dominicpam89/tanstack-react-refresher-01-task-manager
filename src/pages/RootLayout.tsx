@@ -6,7 +6,6 @@ export default function RootLayoutPage() {
       <main>
         <Outlet />
       </main>
-      <footer>Footer</footer>
     </div>
   )
 }
