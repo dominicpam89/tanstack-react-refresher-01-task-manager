@@ -12,4 +12,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  base: 'https://dominicpam89.github.io/tanstack-react-refresher-01-task-manager/',
 })
